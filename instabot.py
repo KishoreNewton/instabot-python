@@ -37,13 +37,18 @@ class InstagramBot:
     def nav_user(self, user):
         self.driver.get(f'{self.base_url}/{user}')
 
+    def scroll(self):
+        self.driver.execute_async_script("window.scrollTo(0, document.body.scrollHeight)")
+
     def follow_user(self, user):
         """
         navigate the user and follow them
+        change sleep time as you wish
         """
         self.nav_user(user)
+        # self.driver.execute_script("window.scrollTo(0, 30")
         self.wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="react-root"]/section/main/div/header/section/div[1]/div[2]/a/button'))).click()
-        time.sleep(3)
+        time.sleep(30)
         self.unfollow_user(user)
 
     def unfollow_user(self, user):
