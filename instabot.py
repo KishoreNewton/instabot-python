@@ -40,7 +40,7 @@ class InstagramBot:
         """
         self.nav_user(user)
         self.wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="react-root"]/section/main/div/header/section/div[1]/div[2]/a/button'))).click()
-        time.sleep(30)
+        time.sleep(3)
         self.unfollow_user(user)
 
     def unfollow_user(self, user):
@@ -56,8 +56,11 @@ if __name__ == '__main__':
     Args:
         id_bot initialize the class InstagramBot with username and password 
         ig_bot.follow_user enter the user to follow and unfollow
-
+        users:str[] Add additional users to the users array
     """
     ig_bot = InstagramBot('temp_username', 'temp_password')
 
-    ig_bot.follow_user('tonyrobbins')
+    users = ['tonyrobbins', 'garyvee', 'youtube']
+
+    for user in users:
+        ig_bot.follow_user(user)
